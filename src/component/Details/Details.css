@@ -1,0 +1,58 @@
+.design-width{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+
+.inner-card{
+    width: 300px;
+    height: 310px;
+   
+    color: #fdfafa;
+   
+    background-color: black;
+    box-shadow: 0px 0px 4px 4px #d1c6c626;
+    border-radius: 5px;
+	
+
+}
+.skill-name{
+	display: flex;
+	justify-content: center;
+	padding-top: 10px;
+}
+
+/* --------------------------------------------------------------------------------------------------------------------
+									responsive design
+--------------------------------------------------------------------------------------------------------------------- */
+@media only screen and (max-width:688px){
+
+    .design-width{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    
+    .inner-card{
+        width: 200px;
+        height: 310px;
+       
+        color: #fdfafa;
+       
+        background-color: black;
+        box-shadow: 0px 0px 4px 4px #d1c6c626;
+        border-radius: 5px;
+        
+    
+    }
+    .skill-name{
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+    }
+    
+}

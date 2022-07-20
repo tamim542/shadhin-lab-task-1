@@ -1,0 +1,29 @@
+.form-center{
+    margin-top: 30px;
+   display: flex;
+   justify-content: center;
+}
+
+    
+
+.input-feildreview{
+    height: 40px;
+    width: 400px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #31c75e;
+    border-radius: 3px;
+   
+}
+
+.button-form{
+    height: 40px;
+    width: 408px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #31c75e;
+    background-color: #31c75e;
+    
+    
+}
