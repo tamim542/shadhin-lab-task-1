@@ -1,0 +1,27 @@
+[
+    {
+        "Division": [
+            "Barisal",
+            "Chittagong",
+            "Dhaka",
+            "Khulna",
+            "Mymensingh",
+            "Rajshahi",
+            "Rangpur",
+            "Sylhet"
+          ]
+    },
+    {
+        "District": [
+            "Narsingdi",
+            "Gazipur",
+            "Dhaka",
+            "Tangail",
+            "Madaripur",
+            "Faridpur",
+            "Manikganj",
+            "Narayanganj"
+          ]
+    }
+   
+]
