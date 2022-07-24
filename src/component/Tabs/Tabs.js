@@ -19,10 +19,7 @@ const Tabs = () => {
     const toggleTab = (index) => {
       setToggleState(index);
     };
-    const countryCityState = require('country-city-state')
- 
-const regions = countryCityState.getCountryRegions('RU')
-const cities = countryCityState.getCountryCities('RU')
+   
 
 
 
@@ -138,7 +135,30 @@ const navigateToInventory = id => {
   navigate(`/updateinfo/${id1}`)
 }
 
-console.log('errorUserType!!==',errorUserType);
+// -------------------------- division district drop downd -----------------------------
+
+const countryCityState = require('country-city-state')
+ 
+const regions = countryCityState.getCountryRegions('RU')
+const cities = countryCityState.getCountryCities('RU')
+
+
+
+const [regionId, setRegionId]=useState('');
+const [stateid, setStateid]=useState('');
+
+const handleDivision=(event)=>{
+  const getcountryid= event.target.value;
+  setRegionId(getcountryid);
+}
+
+
+const handlestate=(event)=>{
+  const getstateid= event.target.value;
+  setStateid(getstateid);
+}
+
+
     return (
         <div>
 
@@ -176,14 +196,48 @@ console.log('errorUserType!!==',errorUserType);
             <p style={{color:'red'}}>{errorUserType}</p>
             <input type="text" name='user_type' onBlur={onBlurHandleFUserType} className="form-control" id="recipient-name" required />
           </div>
+
+
+      {/* ---------------------------- division dropdown--------------------------------- */}
+
           <div className="mb-3">
             <label for="recipient-name" className="col-form-label">Division:</label>
-            <input type="text" name='division' className="form-control" id="recipient-name" required />
+            {/* <input type="text" name='division' className="form-control" id="recipient-name" required /> */}
+
+             <select type="text" name='division' className="form-control" id="recipient-name" required onBlur={(e)=>handleDivision(e)} >
+             <option value="">--Select Division--</option>
+                  {
+                 regions.map(region=>(
+                  <option  value={region.id}>{region.name } </option>
+                 ))
+                  }
+                </select>
           </div>
+
+
+         
+
+      {/* ----------------------------------- district drop down -------------------------------------- */}
+
           <div className="mb-3">
             <label for="recipient-name" className="col-form-label">District:</label>
-            <input type="text" name='district' className="form-control" id="recipient-name" required />
+            {/* <input type="text" name='district' className="form-control" id="recipient-name" required /> */}
+
+            <select type="text" name='district' className="form-control" id="recipient-name" required  onBlur={(e)=>handlestate(e)}>
+                  <option value="">--Select District--</option>
+                  {
+                    cities.filter(data=>data.regionId==regionId).map( district=>(
+                     <option  value={district.name }>{district.name } </option>
+                    )) 
+                  }                  
+                </select>
           </div>
+
+
+
+
+
+
           <div className="mb-3">
             <label for="recipient-name" className="col-form-label">ID:</label>
             <input type="text" name='id' className="form-control" id="recipient-name" required />
