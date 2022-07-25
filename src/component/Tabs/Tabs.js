@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Tabs.css';
+import ReactPaginate from "react-paginate";
 
 const Tabs = () => {
     const [toggleState, setToggleState] = useState(1);
     const [project, setproject] = useState([]);
-    const [admin, setAdmin] = useState([]);
+    //const [admin, setAdmin] = useState([]);
     
     const [firstName, setFirstName]=useState('');
     const [lastName, setLastName]=useState('');
@@ -15,6 +16,10 @@ const Tabs = () => {
     const [errorFName, setErrorFName]=useState('');
     const [errorLName, setErrorLName]=useState('');
     const [errorUserType, setErrorUserType]=useState('');
+
+
+    
+
 
     const toggleTab = (index) => {
       setToggleState(index);
@@ -103,7 +108,7 @@ const Tabs = () => {
 
             const { data } = await axios.get(url)
             setproject(data);
-           console.log('data===',data);
+          
 
 
         }
@@ -157,6 +162,9 @@ const handlestate=(event)=>{
   const getstateid= event.target.value;
   setStateid(getstateid);
 }
+
+// ----------------------------- pagination ----------------------------------
+
 
 
     return (
@@ -311,6 +319,9 @@ project.filter(data=>data.user_type=='admin').map(project1=><div className="col"
 )
 
 }
+
+
+
         </div>
 
           </p>
