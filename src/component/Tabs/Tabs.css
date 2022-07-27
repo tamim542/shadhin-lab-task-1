@@ -95,3 +95,41 @@ body {
   .active-content {
     display: block;
   }
+
+
+  /*-----------------------------------------
+                pagination 
+   ------------------------------------------*/
+
+   
+  .paginationBttns {
+    margin-top: 30px;
+    margin-left: 90px;
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .paginationBttns a{
+    padding: 10px;
+   
+    
+    border: 1px solid rgb(202, 194, 194);
+    color: black;
+    cursor: pointer;
+  }
+
+ 
+
+  .paginationActive a {
+    color: white;
+   border: 1px solid #0e0e0f;
+  }
+
+  .card-display{
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+  }

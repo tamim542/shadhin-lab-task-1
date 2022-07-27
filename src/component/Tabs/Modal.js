@@ -68,7 +68,7 @@ const Modal = () => {
             .then(data => {
               if(data){
                 alert('ok');
-                console.log('data==',data);
+                // console.log('data==',data);
               }
             });
           
@@ -108,7 +108,7 @@ const districtList = districtsOf(divisionName);
 //   setStateid(getstateid);
 // }
 
-// ----------------------------- pagination ----------------------------------
+
 
 
 
@@ -118,7 +118,7 @@ const districtList = districtsOf(divisionName);
                  {/* --------------------------modal --------------------- */}
                  <div>
                 
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add User</button>
+                <button type="button" className="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add User</button>
 
 
 
@@ -198,7 +198,7 @@ const districtList = districtsOf(divisionName);
             <input type="text" name='id' className="form-control" id="recipient-name" required />
           </div>
          
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
         <button type="submit" className="btn btn-primary">Add</button>
     
         </form>
