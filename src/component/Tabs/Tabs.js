@@ -116,7 +116,7 @@ const employeeList = project.filter(data=>data.user_type=='employee');
 const [pageNumberEm, setPageNumberEm] = useState(0);
 
 const emUsersPerPage = 2;
-const emPagesVisited = pageNumber * emUsersPerPage;
+const emPagesVisited = pageNumberEm * emUsersPerPage;
 
 const displayUsersEmployee = employeeList
 .slice(emPagesVisited, emPagesVisited + emUsersPerPage)
