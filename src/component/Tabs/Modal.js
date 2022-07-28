@@ -5,25 +5,10 @@ import { useFormik } from 'formik'
 
 const Modal = () => {
 
-    // const [firstName, setFirstName]=useState('');
-    // const [lastName, setLastName]=useState('');
+    
     const [userType, setUserType]=useState('');
    
-    // const [errorFName, setErrorFName]=useState('');
-    // const [errorLName, setErrorLName]=useState('');
-    // const [errorUserType, setErrorUserType]=useState('');
-
-
-
-
-     // ---------- form validation -----------------
-
-    //  const onBlurHandleFname=(event)=>{
-    //     setFirstName(event.target.value)
-    //   }
-    //   const onBlurHandleLname=(event)=>{
-    //     setLastName(event.target.value)
-    //   }
+    
       const onBlurHandleFUserType=(event)=>{
         setUserType(event.target.value)
        
@@ -32,54 +17,8 @@ const Modal = () => {
       
 
 
-      // ---------- add user using modal -----------------
+      
 
-//       const handleForm = (event) => {
-//         event.preventDefault();
-
-//         if( !/^[a-zA-Z ]+$/.test(firstName) || firstName.length>20){
-//           setErrorFName("First Name must be lass than 21 character and Without any Special Character")
-//        }
-
-//        else if( !/^[a-zA-Z ]+$/.test(lastName) || lastName.length>20){
-//         setErrorLName("Last Name must be lass than 21 character and Without any Special Character")
-//      } 
-//      else if( !/^[a-zA-Z ]+$/.test(userType) || userType.length>10){
-//       setErrorUserType("User Type only admin or employee")
-//    } 
-  
-//        else{
-//         const first_name = event.target.first_name.value;
-       
-//         const last_name = event.target.last_name.value;
-        
-//         const user_type = event.target.user_type.value;
-//         const division = event.target.division.value;
-//         const district = event.target.district.value;
-//         const id = event.target.id.value;
-        
-//         const item = {first_name, last_name,  user_type, division, district,id };
-//         console.log('item==',item);
-//         fetch('https://60f2479f6d44f300177885e6.mockapi.io/users', {
-//             method: 'POST',
-//             headers: { 'Content-Type': 'application/json' },
-//             body: JSON.stringify(item)
-//         })
-
-//             .then(response => response.json())
-//             .then(data => {
-//               if(data){
-//                 alert('ok');
-//                 // console.log('data==',data);
-//               }
-//             });
-          
-
-//             event.target.reset();
-
-//           }
-
-//     }
 
         // -------------------------- division district drop downd -----------------------------
 
