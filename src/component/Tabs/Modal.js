@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
-import { upazilasOf,districtsOf,allDivision } from '@bangladeshi/bangladesh-address';
+import {districtsOf,allDivision } from '@bangladeshi/bangladesh-address';
+
+import { useFormik } from 'formik'
 
 const Modal = () => {
 
-    const [firstName, setFirstName]=useState('');
-    const [lastName, setLastName]=useState('');
+    // const [firstName, setFirstName]=useState('');
+    // const [lastName, setLastName]=useState('');
     const [userType, setUserType]=useState('');
    
-    const [errorFName, setErrorFName]=useState('');
-    const [errorLName, setErrorLName]=useState('');
-    const [errorUserType, setErrorUserType]=useState('');
+    // const [errorFName, setErrorFName]=useState('');
+    // const [errorLName, setErrorLName]=useState('');
+    // const [errorUserType, setErrorUserType]=useState('');
 
 
 
 
      // ---------- form validation -----------------
 
-     const onBlurHandleFname=(event)=>{
-        setFirstName(event.target.value)
-      }
-      const onBlurHandleLname=(event)=>{
-        setLastName(event.target.value)
-      }
+    //  const onBlurHandleFname=(event)=>{
+    //     setFirstName(event.target.value)
+    //   }
+    //   const onBlurHandleLname=(event)=>{
+    //     setLastName(event.target.value)
+    //   }
       const onBlurHandleFUserType=(event)=>{
         setUserType(event.target.value)
        
@@ -32,52 +34,52 @@ const Modal = () => {
 
       // ---------- add user using modal -----------------
 
-      const handleForm = (event) => {
-        event.preventDefault();
+//       const handleForm = (event) => {
+//         event.preventDefault();
 
-        if( !/^[a-zA-Z ]+$/.test(firstName) || firstName.length>20){
-          setErrorFName("First Name must be lass than 21 character and Without any Special Character")
-       }
+//         if( !/^[a-zA-Z ]+$/.test(firstName) || firstName.length>20){
+//           setErrorFName("First Name must be lass than 21 character and Without any Special Character")
+//        }
 
-       else if( !/^[a-zA-Z ]+$/.test(lastName) || lastName.length>20){
-        setErrorLName("Last Name must be lass than 21 character and Without any Special Character")
-     } 
-     else if( !/^[a-zA-Z ]+$/.test(userType) || userType.length>10){
-      setErrorUserType("User Type only admin or employee")
-   } 
+//        else if( !/^[a-zA-Z ]+$/.test(lastName) || lastName.length>20){
+//         setErrorLName("Last Name must be lass than 21 character and Without any Special Character")
+//      } 
+//      else if( !/^[a-zA-Z ]+$/.test(userType) || userType.length>10){
+//       setErrorUserType("User Type only admin or employee")
+//    } 
   
-       else{
-        const first_name = event.target.first_name.value;
+//        else{
+//         const first_name = event.target.first_name.value;
        
-        const last_name = event.target.last_name.value;
+//         const last_name = event.target.last_name.value;
         
-        const user_type = event.target.user_type.value;
-        const division = event.target.division.value;
-        const district = event.target.district.value;
-        const id = event.target.id.value;
+//         const user_type = event.target.user_type.value;
+//         const division = event.target.division.value;
+//         const district = event.target.district.value;
+//         const id = event.target.id.value;
         
-        const item = {first_name, last_name,  user_type, division, district,id };
-        console.log('item==',item);
-        fetch('https://60f2479f6d44f300177885e6.mockapi.io/users', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(item)
-        })
+//         const item = {first_name, last_name,  user_type, division, district,id };
+//         console.log('item==',item);
+//         fetch('https://60f2479f6d44f300177885e6.mockapi.io/users', {
+//             method: 'POST',
+//             headers: { 'Content-Type': 'application/json' },
+//             body: JSON.stringify(item)
+//         })
 
-            .then(response => response.json())
-            .then(data => {
-              if(data){
-                alert('ok');
-                // console.log('data==',data);
-              }
-            });
+//             .then(response => response.json())
+//             .then(data => {
+//               if(data){
+//                 alert('ok');
+//                 // console.log('data==',data);
+//               }
+//             });
           
 
-            event.target.reset();
+//             event.target.reset();
 
-          }
+//           }
 
-    }
+//     }
 
         // -------------------------- division district drop downd -----------------------------
 
@@ -85,17 +87,9 @@ const Modal = () => {
 const division=allDivision();
 
 
-;
-//console.log('district==',district);
 
-//const [regionId, setRegionId]=useState('');
 const [divisionName, setDivisionName]=useState('');
-//const [districtName, setDistrictName]=useState('');
 
-// const handleDivision=(event)=>{
-//   const getcountryid= event.target.value;
-//   setRegionId(getcountryid);
-// }
 const handleDivision=(event)=>{
   const divisionname= event.target.value;
   setDivisionName(divisionname);
@@ -103,14 +97,96 @@ const handleDivision=(event)=>{
 
 const districtList = districtsOf(divisionName);
 
-// const handlestate=(event)=>{
-//   const getstateid= event.target.value;
-//   setStateid(getstateid);
-// }
+//------------------------------------------- formik validation --------------------------------------------------
+
+
+const validate = values => {
+    const errors = {}
+
+    if (!values.first_name) {
+      errors.first_name = 'Required';
+    } else if (!/^[a-zA-Z ]+$/.test(values.first_name)) {
+      errors.first_name = 'Do not allow any Special Character';
+    }else if(values.first_name.length>20){
+        errors.first_name ='First Name must be less than 21';
+    }
+
+
+
+    if (!values.last_name) {
+      errors.last_name = 'Required'
+    } else if (values.last_name.length >21) {
+      errors.last_name = 'Last Name must be less than 21';
+    } else if (!/^[a-zA-Z ]+$/.test(values.last_name)) {
+      errors.last_name = 'Do not allow any Special Character';
+    }
 
 
 
 
+    if (!values.user_type) {
+      errors.user_type = 'Required'
+    } else if (!/^[a-zA-Z ]+$/.test(values.user_type)) {
+      errors.user_type = 'Do not allow any Special Character'
+    }else if (values.user_type!='admin' && values.user_type!='employee' ) {
+        errors.user_type = 'User type must be admin or employee'
+      }
+
+    return errors
+  }
+
+  const formik = useFormik({
+
+    initialValues: {
+        first_name: '',
+        last_name: '',
+        user_type: '',
+        division: '',
+        district: '',
+        id: ''
+    },
+    validate,
+    
+    onSubmit: values => {
+    //   alert(JSON.stringify(values, null, 2))
+      
+//---------------------------- data post ------------------------------------------------
+const first_name=values.first_name;
+const last_name=values.last_name;
+const user_type=values.user_type;
+const division=values.division;
+const district=values.district;
+const id=values.id;
+
+const item = {first_name, last_name,  user_type, division, district,id };
+console.log('item==',item);
+fetch('https://60f2479f6d44f300177885e6.mockapi.io/users', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(item)
+})
+
+    .then(response => response.json())
+    .then(data => {
+      if(data){
+        alert('ok');
+        // console.log('data==',data);
+      }
+    });
+  
+
+    
+
+
+
+    }
+    
+
+  })
+
+
+
+//--------------------------------------------- end ------------------------------------------------------
 
 
     return (
@@ -130,21 +206,45 @@ const districtList = districtsOf(divisionName);
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
-        <form onSubmit={handleForm}>
+        <form onSubmit={formik.handleSubmit}>
+
+
+
           <div className="mb-3">
             <label for="recipient-name" className="col-form-label">First Name:</label>
-            <p style={{color:'red'}}>{errorFName}</p>
-            <input type="text" name='first_name' onBlur={onBlurHandleFname} className="form-control" id="recipient-name" required/>
+            {/* <p style={{color:'red'}}>{errorFName}</p> */}
+            <input 
+            type="text" name='first_name'  onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.first_name}
+            className="form-control" id="recipient-name"/>
+            {formik.touched.first_name && formik.errors.first_name ? <div style={{color:'red'}}>{formik.errors.first_name}</div> : null}
           </div>
+
+
+
+
           <div className="mb-3">
             <label for="recipient-name" className="col-form-label">Last Name:</label>
-            <p style={{color:'red'}}>{errorLName}</p>
-            <input type="text" name='last_name' onBlur={onBlurHandleLname} className="form-control" id="recipient-name" required />
+            {/* <p style={{color:'red'}}>{errorLName}</p> */}
+            <input type="text" name='last_name' onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.last_name}
+            className="form-control" id="recipient-name"  />
+            {formik.touched.last_name && formik.errors.last_name ? <div style={{color:'red'}}>{formik.errors.last_name}</div> : null}
           </div>
+
+
+
+
           <div className="mb-3">
             <label for="recipient-name" className="col-form-label">User Type:</label>
-            <p style={{color:'red'}}>{errorUserType}</p>
-            <input type="text" name='user_type' onBlur={onBlurHandleFUserType} className="form-control" id="recipient-name" required />
+            {/* <p style={{color:'red'}}>{errorUserType}</p> */}
+            <input type="text" name='user_type'  onChange={formik.handleChange}
+        onBlur={onBlurHandleFUserType}
+        value={formik.values.user_type}
+         className="form-control" id="recipient-name" />
+         {formik.touched.user_type && formik.errors.user_type ? <div style={{color:'red'}}>{formik.errors.user_type}</div> : null}
           </div>
 
 
@@ -153,9 +253,9 @@ const districtList = districtsOf(divisionName);
           <div className="mb-3">
             <label for="recipient-name" className="col-form-label">Division:</label>
          { 
-          userType=='admin'?<input type="text" name='division' className="form-control" id="recipient-name" required /> 
+          userType=='admin'?<input type="text" name='division' onChange={formik.handleChange} value={formik.values.division} className="form-control" id="recipient-name" required /> 
 
-            :<select type="text" name='division' className="form-control" id="recipient-name" required onBlur={(e)=>handleDivision(e)} >
+            :<select type="text" name='division' onChange={formik.handleChange} value={formik.values.division} className="form-control" id="recipient-name" required onBlur={(e)=>handleDivision(e)} >
             <option value="">--Select Division--</option>
                 {
                 division.map(divisions=>(
@@ -174,9 +274,9 @@ const districtList = districtsOf(divisionName);
           <div className="mb-3">
             <label for="recipient-name" className="col-form-label">District:</label>
           { 
-        userType=='admin'? <input type="text" name='district' className="form-control" id="recipient-name" required /> 
+        userType=='admin'? <input type="text" name='district' onChange={formik.handleChange} value={formik.values.district} className="form-control" id="recipient-name" required /> 
 
-            :<select type="text" name='district' className="form-control" id="recipient-name" required  >
+            :<select type="text" name='district' onChange={formik.handleChange} value={formik.values.district} className="form-control" id="recipient-name" required  >
                   <option value="">--Select District--</option>
                   {
                     districtList?.map( districts=>(
@@ -195,11 +295,15 @@ const districtList = districtsOf(divisionName);
 
           <div className="mb-3">
             <label for="recipient-name" className="col-form-label">ID:</label>
-            <input type="text" name='id' className="form-control" id="recipient-name" required />
+            <input type="number" name='id' onChange={formik.handleChange} value={formik.values.id} className="form-control" id="recipient-name" required />
           </div>
          
+
+
+
         <button type="button" className="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
         <button type="submit" className="btn btn-primary">Add</button>
+        
     
         </form>
       </div>
